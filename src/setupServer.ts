@@ -16,7 +16,7 @@ import applicationRoutes from '@root//routes';
 import Logger from 'bunyan';
 import { CustomError, IErrorResponse } from '@global/helpers/error-handler';
 
-const SERVER_PORT= 3300;
+const SERVER_PORT= 5000;
 const log: Logger = config.createLogger('server');
 export class ChattyServer {
     private app: Application;
@@ -96,12 +96,20 @@ export class ChattyServer {
         io.adapter(createAdapter(pubClient,subClient));
         return io;
     }
-    private startHttpServer(httpServer: http.Server):void {
+    // private startHttpServer(httpServer: http.Server):void {
+    //   log.info(`Server has started with process ${process.pid}`);
+    //     httpServer.listen(SERVER_PORT, ()=>{
+    //       log.info(`Server running on port ${SERVER_PORT}`);
+    //     });
+    // }
+    private startHttpServer(httpServer: http.Server): void {
+      log.info(`Worker with process id of ${process.pid} has started...`);
       log.info(`Server has started with process ${process.pid}`);
-        httpServer.listen(SERVER_PORT, ()=>{
-          log.info(`Server running on port ${SERVER_PORT}`);
-        });
+      httpServer.listen(SERVER_PORT, () => {
+        log.info(`Server running on port ${SERVER_PORT}`);
+      });
     }
+
     private socketIOConnection(io:Server):void{
       log.info('socket io');
     }
