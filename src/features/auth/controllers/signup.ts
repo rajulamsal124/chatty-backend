@@ -8,7 +8,8 @@ import { signupSchema } from '@auth/schemes/signup';
 import { Helpers } from '@global/helpers/helpers';
 import { IAuthDocument, ISignUpData } from '@auth/interfaces/auth-interface';
 import { uploads } from '@global/helpers/cloudinary-upload';
-import { authService } from '@global/services/db/auth.service';
+import { authService } from '@service/db/auth.service';
+
 
 export class SignUp {
   @joiValidation(signupSchema)
